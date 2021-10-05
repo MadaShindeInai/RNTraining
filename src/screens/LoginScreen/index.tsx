@@ -27,7 +27,7 @@ export const LoginScreen = ({navigation}: any) => {
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
           <Button
-            title="Go to Jane's profile"
+            title="Login"
             onPress={() => navigation.navigate('Profile', {name: 'Jane'})}
           />
         </View>
