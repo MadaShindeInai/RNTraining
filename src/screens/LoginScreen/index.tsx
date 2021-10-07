@@ -42,7 +42,9 @@ export const LoginScreen = ({route}: any) => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Text>{JSON.stringify(route.params)}lol</Text>
+          <Text>
+            Stringified params: {JSON.stringify(route.params) || 'undefined'}
+          </Text>
           <Button title="link" onPress={handlePress} />
         </View>
       </ScrollView>

@@ -73,7 +73,9 @@ export const TokenScreen = ({navigation, route}: any) => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Text>This is {route?.params?.token}'s profile</Text>
+          <Text>
+            Stringified params: {JSON.stringify(route.params) || 'undefined'}
+          </Text>
         </View>
       </ScrollView>
     </SafeAreaView>
