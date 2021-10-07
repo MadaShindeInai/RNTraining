@@ -18,13 +18,9 @@ import {
   selectCount,
 } from '../../redux/slices/counterSlice';
 
-export const ProfileScreen = ({navigation, route}: any) => {
+export const ProfileScreen = ({navigation}: any) => {
   const dispatch = useDispatch();
   const count = useSelector(selectCount);
-  console.log(
-    '🚀 ~ file: index.tsx ~ line 5 ~ ProfileScreen ~ navigation',
-    navigation,
-  );
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -41,7 +37,6 @@ export const ProfileScreen = ({navigation, route}: any) => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Text>This is {route.params.name}'s profile</Text>
           <Section title="Redux">
             Counter value: <Text style={styles.highlight}>{count}</Text>
             <Button
@@ -55,6 +50,30 @@ export const ProfileScreen = ({navigation, route}: any) => {
               onPress={() => dispatch(decrement())}
             />
           </Section>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+};
+export const TokenScreen = ({navigation, route}: any) => {
+  // const dispatch = useDispatch();
+  const isDarkMode = useColorScheme() === 'dark';
+
+  const backgroundStyle = {
+    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  };
+
+  return (
+    <SafeAreaView style={backgroundStyle}>
+      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        style={backgroundStyle}>
+        <View
+          style={{
+            backgroundColor: isDarkMode ? Colors.black : Colors.white,
+          }}>
+          <Text>This is {route?.params?.token}'s profile</Text>
         </View>
       </ScrollView>
     </SafeAreaView>

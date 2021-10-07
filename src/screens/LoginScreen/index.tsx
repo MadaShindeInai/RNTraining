@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback} from 'react';
 import {
   View,
   SafeAreaView,
@@ -12,32 +12,11 @@ import {
 } from 'react-native';
 import {Header, Colors} from 'react-native/Libraries/NewAppScreen';
 import {AUTH_BACKEND_LINK} from '../../Constants/api';
+// import Reactotron from 'reactotron-react-native';
 
-const useInitialURL = () => {
-  const [url, setUrl] = useState<null | string>(null);
-  const [processing, setProcessing] = useState(true);
-
-  useEffect(() => {
-    const getUrlAsync = async () => {
-      // Get the deep link used to open the app
-      const initialUrl = await Linking.getInitialURL();
-
-      // The setTimeout is just for testing purpose
-      setTimeout(() => {
-        setUrl(initialUrl);
-        setProcessing(false);
-      }, 1000);
-    };
-
-    getUrlAsync();
-  }, []);
-
-  return {url, processing};
-};
-
-export const LoginScreen = () => {
+export const LoginScreen = ({route}: any) => {
   const isDarkMode = useColorScheme() === 'dark';
-  const {url: initialUrl, processing} = useInitialURL();
+  // Reactotron.log!(route);
   const handlePress = useCallback(async () => {
     // Checking if the link is supported for links with custom URL scheme.
     const supported = await Linking.canOpenURL(AUTH_BACKEND_LINK);
@@ -59,15 +38,11 @@ export const LoginScreen = () => {
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
         <Header />
-        <Text>
-          {processing
-            ? 'Processing the initial url from a deep link'
-            : `The deep link is: ${initialUrl || 'None'}`}
-        </Text>
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
+          <Text>{JSON.stringify(route.params)}lol</Text>
           <Button title="link" onPress={handlePress} />
         </View>
       </ScrollView>
